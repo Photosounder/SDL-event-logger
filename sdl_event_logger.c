@@ -85,7 +85,7 @@ void main_loop()
 		fb.use_drawq = 0;	// OpenCL draw queue
 
 		sdl_graphics_init_autosize("SDL Event Logger", SDL_WINDOW_RESIZABLE, 0);
-		SDL_MaximizeWindow(fb.window);
+		//SDL_MaximizeWindow(fb.window);
 
 		zc = init_zoom(&mouse, drawing_thickness);
 		calc_screen_limits(&zc);

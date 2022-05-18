@@ -1,0 +1,13 @@
+= SDL Event Logger
+
+== How to trigger the bug
+
+Short-press the middle mouse button or Alt-Z to toggle the zoom-scroll mode, which relies on `SDL_SetRelativeMouseMode()` and `SDL_WarpMouseInWindow()` to achieve the effect. With the SDL 2.0.22 DLL everything should jitter all over the place as you move the mouse in this mode, not so with earlier versions.
+
+Also, preferably with the zoom-scroll mode turned off, hold-click on the test dial control on the upper right corner, see how it also jitters as you move the mouse up and down.
+
+Replace the DLL with different versions to see how you obtain different behaviours and events.
+
+== Where's the SDL code responsible
+
+The relevant SDL-specific code is found in link:rouziclib/libraries/sdl.c[sdl.c] and link:rouziclib/general/mouse.c[mouse.c]. The state of the zoom-scroll mode is in the flag `mouse.zoom_flag`. Moving the knob sets `mouse.warp_if_move` which sets `mouse.warp` when the mouse starts moving.
